@@ -1,41 +1,23 @@
+testing = False
+
 import shared
 
-testing = True
+def containsBag(bags, outerBag, target):
+    return outerBag == target or any(containsBag(bags, bag, target) for bag in bags[outerBag])
 
 if testing:
     text = shared.read_input("input_test")
 else:
     text = shared.read_input("input")
 
-rules = shared.parse_rules(text)
+bags = shared.parse_rules(text)
 
 if testing:
-    print(rules)
+    print(bags)
 
-count_gold = 0
-sum = 0
+target = "shiny gold"
+part1 = sum(containsBag(bags, bag, target) for bag in bags) - 1    # remove the top-most target bag from input list of bags
 
-def get_contents(color):
-    global count_gold
-    if rules[color]:
-        if color == 'shiny gold':
-            count_gold += 1
-        for contents_color, quantity in rules[color].items():
-            for index in range(quantity):
-                get_contents(contents_color)
-    else:
-        return
-    
-    return rules[color]
-
-for color in rules:
-    count_gold = 0
-    get_contents(color)
-    if (color != "shiny gold") and (count_gold > 0):
-        sum += 1
-
-print(f"Total bag colors that contain at least one shiny gold bag: {sum}")
+print(f"Total bag colors that contain at least one shiny gold bag: {part1}")
 
 shared.printTimeElapsed()
-
-# expected answer for part 1 = 326
