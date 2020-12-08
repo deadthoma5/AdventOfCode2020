@@ -27,7 +27,8 @@ def read_input(filename):
 def printTimeElapsed():
     global _startTime
     _endTime = time()
-    print("Time: {:.3f}s".format(_endTime - _startTime))
+    elapsed = _endTime - _startTime
+    print(f"Time: {elapsed:.3f}s")
 
 def parse_rules(text):
     parsed = dict()

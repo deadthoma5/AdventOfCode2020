@@ -1,6 +1,6 @@
 import shared
 
-testing = False
+testing = True
 
 if testing:
     text = shared.read_input("input_test")
@@ -34,7 +34,7 @@ for color in rules:
     if (color != "shiny gold") and (count_gold > 0):
         sum += 1
 
-print("\nTotal bag colors that contain at least one shiny gold bag: ", sum)
+print(f"Total bag colors that contain at least one shiny gold bag: {sum}")
 
 shared.printTimeElapsed()
 
