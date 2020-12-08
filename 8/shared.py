@@ -28,7 +28,7 @@ def printTimeElapsed():
     global _startTime
     _endTime = time()
     elapsed = _endTime - _startTime
-    print(f"Time: {elapsed:.3f}s")
+    print(f"\n\nTime: {elapsed:.3f}s")
 
 def parse_input(text):
     parsed = []
