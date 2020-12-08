@@ -17,7 +17,6 @@ if testing:
     print(bags)
 
 target = "shiny gold"
-part2 = 0
 part2 = countBags(bags, target)
 print(f"Individual bags required inside single {target} bag: {part2}")
 
