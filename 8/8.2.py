@@ -33,7 +33,7 @@ class Reader:
     def evaluate(self, instructions):
         for index in range(len(instructions)):
             if (self.position >= len(instructions)):
-                print(f"Program completed successfully at Step {index}. Position: {reader.position}, Accumulator: {reader.accumulator}")
+                print(f"Program completed successfully at Step {index}. Position: {self.position}, Accumulator: {self.accumulator}")
                 return True
             if instructions[self.position][0] == "nop":
                 self.nop(int(instructions[self.position][1]))
@@ -42,9 +42,9 @@ class Reader:
             elif instructions[self.position][0] == "jmp":
                 self.jmp(int(instructions[self.position][1]))
                 if self.checkhistory():
-                    print(f"Exiting. Infinite loop encountered at Step {index}. Position: {reader.position}, Accumulator: {reader.accumulator}")
+                    print(f"Exiting. Infinite loop encountered at Step {index}. Position: {self.position}, Accumulator: {self.accumulator}")
                     if testing:
-                        print(f"History: {reader.history}\n")
+                        print(f"History: {self.history}\n")
                     return False
         
 if testing:
