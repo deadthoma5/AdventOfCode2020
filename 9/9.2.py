@@ -29,16 +29,14 @@ p1index = text.index(part1)
 for i in range(p1index):
     flag = False
     indexcombos = list(combinations(range(p1index),2))
-    ranges = [(x[0],x[1]+1) for x in indexcombos]
-    for x in ranges:
-        sums = [sum(text[x[0]:x[1]])]
+    ranges = [(start,end+1) for start, end in indexcombos]
+    for start, end in ranges:
+        sums = [sum(text[start:end])]
         if part1 in sums:
             if testing:
-                print(f"we got a match at indices: {x[0]} thru {x[1]-1}")
-            startindex = x[0]
-            endindex = x[1]
-            resultlist = text[startindex:endindex]
-            part2 = min(resultlist) + max(resultlist)
+                print(f"we got a match at indices: {start} thru {end-1}")
+            res = text[start:end]
+            part2 = min(res) + max(res)
             flag = True
             break
     if flag:
