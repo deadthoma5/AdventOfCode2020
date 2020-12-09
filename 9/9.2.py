@@ -34,7 +34,6 @@ for start, end in ranges:
             print(f"we got a match at indices: {start} thru {end-1}")
         res = text[start:end]
         part2 = min(res) + max(res)
-        flag = True
         break
 print(f"[Part 2] The sum of min/max values are: {part2}")
 
