@@ -1,30 +1,35 @@
-testing = True
+testing = False
 
 import shared
-from itertools import permutations
-        
+
 if testing:
     text = shared.read_input("input_test")
     print(f"Instructions: {text}")
 else:
     text = shared.read_input("input")
-
+    
 # Part 1
-p1text = text
-p1text.insert(0,0)
-p1text.append(max(text) + 3)
-p1text.sort()
-diff1, diff3 = 0, 0
-for i in range(1,len(p1text)):
-    diff = p1text[i] - p1text[i-1]
-    if diff == 1:
-        diff1 +=1
-    elif diff == 3:
-        diff3 += 1
-print(f"[Part 1] {diff1*diff3}")
+text.insert(0,0)
+text.append(max(text) + 3)
+text.sort()
+if testing:
+    print(f"Sorted: {text}")
+diff = [0] * 4
+for i in range(1,len(text)):
+    x = text[i] - text[i-1]
+    assert x <= 3
+    diff[x] += 1
+print(f"[Part 1] {diff[1]*diff[3]}")
 
 # Part 2
-p2text = text
-p2perm = permutations(p2text)
-print(list(p2perm))
+res = [1]
+for i in range(1, len(text)):
+    count = 0
+    for j in range(i):
+        if text[i] - text[j] <= 3:
+            count += res[j]
+    res.append(count)
+print(f"[Part 2] {res[-1]}")
+
+# Display the time this took to run
 shared.printTimeElapsed()
