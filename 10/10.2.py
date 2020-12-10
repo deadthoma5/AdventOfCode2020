@@ -9,9 +9,9 @@ else:
     text = shared.read_input("input")
     
 # Part 1
-text.insert(0,0)
-text.append(max(text) + 3)
 text.sort()
+text.insert(0,0)
+text.append(text[-1] + 3)
 if testing:
     print(f"Sorted: {text}")
 diff = [0] * 4
