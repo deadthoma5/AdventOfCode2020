@@ -1,7 +1,6 @@
 testing = False
 
 import shared
-import operator
 
 if testing:
     seats = shared.read_input("input_test")
