@@ -49,7 +49,7 @@ def move(position, velocity, step):
             shift = np.array((-1, 0))
         return position, np.add(velocity, n*shift)
 
-# Part 1
+# Part 2
 position = np.array((0, 0))
 velocity = np.array((10, 1))    # +x = east, +y = north
 instructions=[]
@@ -60,8 +60,8 @@ for step in instructions:
     position, velocity = move(position, velocity, step)
     if testing:
         print(f"current position: {position}")
-part1 = abs(position[0]) + abs(position[1])
-print(f"[Part 2] {part1}")
+part2 = abs(position[0]) + abs(position[1])
+print(f"[Part 2] {part2}")
 
 # Display the time this took to run
 shared.printTimeElapsed()
