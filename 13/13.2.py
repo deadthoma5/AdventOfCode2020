@@ -12,7 +12,7 @@ else:
 
 # Part 2
 buses = text[1].split(',')
-timestamp = 1
+timestamp = np.int64(1)    # Because 32 bits isn't enough!
 lcm = np.int64(1)    # Because 32 bits isn't enough!
 for i, bus in enumerate(buses):
     if bus == 'x':
