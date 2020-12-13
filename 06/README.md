@@ -43,7 +43,7 @@ In this example, the sum of these counts is 3 + 3 + 3 + 1 + 1 = 11.
 For each group, count the number of questions to which anyone answered "yes". What is the sum of those counts?
 
 Your puzzle answer was 6809.
---- Part Two ---
+## --- Part Two ---
 
 As you finish the last group's customs declaration, you notice that you misread one word in the instructions:
 

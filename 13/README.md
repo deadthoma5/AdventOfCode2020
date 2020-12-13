@@ -47,7 +47,7 @@ The earliest bus you could take is bus ID 59. It doesn't depart until timestamp 
 What is the ID of the earliest bus you can take to the airport multiplied by the number of minutes you'll need to wait for that bus?
 
 Your puzzle answer was 5257.
---- Part Two ---
+## --- Part Two ---
 
 The shuttle company is running a contest: one gold coin for anyone that can find the earliest timestamp such that the first bus ID departs at that time and each subsequent listed bus ID departs at that subsequent minute. (The first line in your input is no longer relevant.)
 

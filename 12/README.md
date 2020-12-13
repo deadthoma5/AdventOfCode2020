@@ -37,7 +37,7 @@ At the end of these instructions, the ship's Manhattan distance (sum of the abso
 Figure out where the navigation instructions lead. What is the Manhattan distance between that location and the ship's starting position?
 
 Your puzzle answer was 439.
---- Part Two ---
+## --- Part Two ---
 
 Before you can give the destination to the captain, you realize that the actual action meanings were printed on the back of the instructions the whole time.
 
