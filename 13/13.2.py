@@ -22,7 +22,7 @@ for i, bus in enumerate(buses):
     while ((timestamp + i) % bus) != 0:
         timestamp += lcm    # Don't need to iterate through every integer. Can skip ahead to next time sub-pattern repeats (every lcm).
     if testing:
-        print(f"timestamp: {timestamp}, i: {i}, bus: {bus}, lcm: {lcm}")
+        print(f"timestamp: {timestamp}, i: {i}, bus: {bus}, old lcm: {lcm}, new lcm: {np.lcm(lcm, bus)}")
     lcm = np.lcm(lcm, bus)
 part2 = timestamp
 print(f"[Part 2] {part2}")
