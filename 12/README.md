@@ -18,11 +18,11 @@ The ship starts by facing east. Only the L and R actions change the direction th
 
 For example:
 
-F10
-N3
-F7
-R90
-F11
+    F10
+    N3
+    F7
+    R90
+    F11
 
 These instructions would be handled as follows:
 
