@@ -15,14 +15,14 @@ buses = text[1].split(',')
 timestamp = 1
 lcm = np.int64(1)    # Because 32 bits isn't enough!
 for i, bus in enumerate(buses):
-    if buses[i] == 'x':
+    if bus == 'x':
         continue
     else:
         bus = int(bus)        
     while ((timestamp + i) % bus) != 0:
         timestamp += lcm    # Don't need to iterate through every integer. Can skip ahead to next time sub-pattern repeats (every lcm).
     if testing:
-        print(f"time: {timestamp}, i: {i}, bus: {bus}, lcm: {lcm}")
+        print(f"timestamp: {timestamp}, i: {i}, bus: {bus}, lcm: {lcm}")
     lcm = np.lcm(lcm, bus)
 part2 = timestamp
 print(f"[Part 2] {part2}")
