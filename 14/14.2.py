@@ -49,23 +49,22 @@ def unpack(addresses: List[str], n:int=0) -> List[str]:
     if testing:
         print(f"recursion depth: {n}, input: {addresses}")
     newAddresses = []
-    if addresses:
-        for a in addresses:
-            if testing:
-                print(f"examining address: {a}")
-            for i, c in enumerate(a):
-                if c == 'X':
-                    newAddresses.append(a[:i] + '0' + a[i+1:])
-                    newAddresses.append(a[:i] + '1' + a[i+1:])
-                    if testing:
-                        print(f"newAddresses: {newAddresses}")
-                    break
-                else:
-                    continue
-    if not newAddresses:
-        return addresses
-    else:
+    for a in addresses:
+        if testing:
+            print(f"examining address: {a}")
+        for i, c in enumerate(a):
+            if c == 'X':
+                newAddresses.append(a[:i] + '0' + a[i+1:])
+                newAddresses.append(a[:i] + '1' + a[i+1:])
+                if testing:
+                    print(f"newAddresses: {newAddresses}")
+                break
+            else:
+                continue
+    if newAddresses:
         return unpack(newAddresses, n+1)
+    else:
+        return addresses
 
 # Part 2
 instructions = shared.parse_input(text)
