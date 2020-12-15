@@ -1,4 +1,4 @@
-testing = True
+testing = False
 
 import shared
 import re
@@ -15,51 +15,57 @@ def read(inst: str) -> Tuple[str, int, str]:
         if testing:
             print(f"updating mask to {inst[1]}")
         op = "mask"
-        index = 0
+        address = 0
         value = inst[1]
-        return op, index, value
+        return op, address, value
     else:
         match = re.findall(r'([^\[\]]*)', inst[0])
         op = match[0]
-        index = int(match[2])
+        address = int(match[2])
         value = str(bin(int(inst[1])))[2:].zfill(36)
-        return op, index, value
+        return op, address, value
 
-def decode(mask: str, value: str) -> List[str]:
+def decode(mask: str, address: int) -> List[int]:
+    address = str(bin(int(address)))[2:].zfill(36)
     for i, c in enumerate(mask):
         if c == '0':
             continue
         else:
             if testing:
-                print(f"changed at mask index {i}: {value[i]} to {mask[i]}")
-            value = value[:i] + mask[i] + value[i+1:]
+                print(f"changed at mask index {i}: {address[i]} to {mask[i]}")
+            address = address[:i] + mask[i] + address[i+1:]
             if testing:
-                print(f"value is now: {value}")
-    return [value]
+                print(f"address is now: {address}")
+    if testing:
+        print("-- unpacking Xs... --")
+    addresses = unpack([address])
+    for i, a in enumerate(addresses):
+        addresses[i] = int(a, 2)
+    if testing:
+        print(f"decoded addresses: {addresses}")
+    return addresses
 
-def unpack(values: List[str], n:int=0) -> List[str]:
+def unpack(addresses: List[str], n:int=0) -> List[str]:
     if testing:
-        print(f"recursion depth: {n}, input: {values}")
-    if testing:
-        print(f"values: {values}")
-    valueList = []
-    if values:
-        for value in values:
+        print(f"recursion depth: {n}, input: {addresses}")
+    newAddresses = []
+    if addresses:
+        for a in addresses:
             if testing:
-                print(f"examining value: {value}")
-            for i, c in enumerate(value):
+                print(f"examining address: {a}")
+            for i, c in enumerate(a):
                 if c == 'X':
-                    valueList.append(value[:i] + '0' + value[i+1:])
-                    valueList.append(value[:i] + '1' + value[i+1:])
+                    newAddresses.append(a[:i] + '0' + a[i+1:])
+                    newAddresses.append(a[:i] + '1' + a[i+1:])
                     if testing:
-                        print(f"valueList: {valueList}")
+                        print(f"newAddresses: {newAddresses}")
                     break
                 else:
                     continue
-    if not valueList:
-        return values
+    if not newAddresses:
+        return addresses
     else:
-        return unpack(valueList, n+1)
+        return unpack(newAddresses, n+1)
 
 def getTotal(mem):
     return 0
@@ -70,23 +76,19 @@ if testing:
     print(instructions)
 mem = dict()
 for inst in instructions:
-    op, index, value = read(inst)
+    op, address, value = read(inst)
     if testing:
-        print(f"instruction: op {op}, index {index}, value {value}")
+        print(f"instruction: op {op}, address {address}, value {value}")
     if op == "mask":
         mask = value
     else:
-        mem[index] = decode(mask, value)
-for address in mem:
-    if testing:
-        print("-- unpacking Xs... --")
-    mem[address] = unpack(mem[address])
+        for a in decode(mask, address):
+            mem[a] = value
 if testing:
     print(f"final state of mem: {mem}")
 total = 0
 for address in mem:
-    for x in mem[address]:
-        total += int(x,2)
+    total += int(mem[address],2)
 part2 = total
 print(f"[Part 2] {part2}")
 
