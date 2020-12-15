@@ -67,9 +67,6 @@ def unpack(addresses: List[str], n:int=0) -> List[str]:
     else:
         return unpack(newAddresses, n+1)
 
-def getTotal(mem):
-    return 0
-
 # Part 2
 instructions = shared.parse_input(text)
 if testing: 
