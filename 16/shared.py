@@ -30,11 +30,4 @@ def printTimeElapsed():
     _endTime = time()
     elapsed = _endTime - _startTime
     print(f"\n\nTime: {elapsed:.3f}s")
-
-def split_input(text):
-    splits = [i for i, x in enumerate(text) if x == ""]
-    rules = text[:splits[0]]
-    print(rules)
-    for line in text:
-        parsed.append((* line.rstrip(".\n").split(" = "),))    # store each step as a tuple
-    return parsed
+    
