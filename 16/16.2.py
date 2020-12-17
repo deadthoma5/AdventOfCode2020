@@ -4,7 +4,7 @@ import shared
 import re
 
 if testing:
-    text = shared.read_input("input_test")
+    text = shared.read_input("input_test2")
     print(f"Instructions: {text}")
 else:
     text = shared.read_input("input")
@@ -29,7 +29,7 @@ def split_input(text):
 
 def check_rule(rule, x):
     if testing:
-        print(f"checking if {x} is between {rule[1]}-{rule[2]} or {rule[3]}-{rule[4]}")
+        print(f"checking if {x} against rule: {rule}")
     if ((x >= rule[1]) and (x <= rule[2])) or ((x >= rule[3]) and (x <= rule[4])):
         if testing:
             print("true")
@@ -50,16 +50,62 @@ def validate(rules, ticket):
             return x
     return 0
 
-# Part 1
-part1 = 0
+def map_rules(rules, validTickets):
+    mapping = dict()
+    options = dict()
+    for rule in rules:
+        options[rule] = []
+        for i in range(len(validTickets[0])):
+            if all(check_rule(rule, ticket[i]) for ticket in validTickets):
+                options[rule].append(i)
+    if testing:
+        print(f"possible options: {options}")
+    while options:
+        todo = options.copy()
+        for rule in todo:
+            if len(options[rule]) == 1:
+                pos = options[rule][0]
+                mapping[rule] = pos
+                options.pop(rule)
+                for r in options:
+                    options[r].remove(pos)
+    return mapping
+
+def get_dep_rules(rules):
+    depRules = []
+    for rule in rules:
+        if rule[0].startswith("departure"):
+            depRules.append(rule)
+    return depRules
+
+# Part 2
+validTickets = []
 rules, myTicket, nearbyTickets = split_input(text)
 if testing:
     print(f"rules: {rules}, myticket: {myTicket}, nearbyTickets: {nearbyTickets}")
 for ticket in nearbyTickets:
     if testing:
         print(f"processing ticket: {ticket}, invalid number: {validate(rules, ticket)}")
-    part1 += validate(rules, ticket)
-print(f"[Part 1] {part1}")
+    if validate(rules, ticket) == 0:
+        validTickets.append(ticket)
+if testing:
+    print(f"valid tickets: {validTickets}")
+if testing:
+    print(f"-- finding mappings -- ")
+mapping = map_rules(rules, validTickets)
+if testing:
+    print(f"mapping: {mapping}")
+if testing:
+    testRules = rules
+else:
+    depRules = get_dep_rules(rules)
+    testRules = depRules
+if testing:
+    print(f"testing rules mappings: {testRules} against myTicket: {myTicket}")
+part2 = 1
+for rule in testRules:
+    part2 *= myTicket[mapping[rule]]
+print(f"[Part 2] {part2}")
 
 # Display the time this took to run
 shared.printTimeElapsed()
