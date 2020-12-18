@@ -87,14 +87,14 @@ def doMath(op, op1, op2):
     else:
         return op1 - op2
 
-# Part 1
-part1 = 0
+# Part 2
+part2 = 0
 if testing:
-    part1 += postfixEval(infixToPostfix(text))
+    part2 += postfixEval(infixToPostfix(text))
 else:
     for line in text:
-        part1 += postfixEval(infixToPostfix(line))
-print(f"[Part 1] {part1}")
+        part2 += postfixEval(infixToPostfix(line))
+print(f"[Part 2] {part2}")
 
 # Display the time this took to run
 shared.printTimeElapsed()
