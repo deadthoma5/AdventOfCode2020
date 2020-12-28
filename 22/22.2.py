@@ -93,8 +93,7 @@ def play_recursive_combat(player1, player2, game=1):
         gamewinner = player2
     if testing:
         print(f"The winner of game {game} is {gamewinner.id}!")
-#    if testing and (game == 1):
-    if (game == 1):
+    if testing and (game == 1):
         print(f"\n\n== Post-game results ==")
         print(player1)
         print(player2)
