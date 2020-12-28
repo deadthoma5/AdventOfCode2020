@@ -51,7 +51,7 @@ def calculate_score(winner):
         print(f"score: {score}")
     return score
 
-def play_game(player1, player2):
+def play_combat(player1, player2):
     n = 0
     while player1.is_not_empty() and player2.is_not_empty():
         if testing:
@@ -87,7 +87,7 @@ else:
 
 # Part 1
 player1, player2 = init_players(text)
-part1 = play_game(player1, player2)
+part1 = play_combat(player1, player2)
 print(f"[Part 1] {part1}")
 
 # Display the time this took to run
