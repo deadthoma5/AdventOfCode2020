@@ -75,8 +75,7 @@ def play_game(player1, player2):
         winner = player1
     else:
         winner = player2
-    score = calculate_score(winner)
-    return score
+    return calculate_score(winner)
 
 # import text from file
 if testing:
