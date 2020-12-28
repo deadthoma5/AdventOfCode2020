@@ -1,7 +1,6 @@
 testing = False
 
 import shared
-import re
 
 class Deck:
     def __init__(self, id, cards):
