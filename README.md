@@ -1,2 +1,2 @@
 ﻿# AdventOfCode2020
-Coding challenges: https://adventofcode.com
+Coding challenges: https://adventofcode.com/2020
